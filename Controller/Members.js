@@ -125,26 +125,4 @@ async function Login(req, res) {
   }
 }
 
-// async function List(req, res) {
-//   // console.log("SALAM")
-//   // const memberId = req.member.id;
-//   // // const borrowList = await Borrowing.findOne({ memberId });
-//   // console.log(memberId);
-//   // // console.log(borrowList);
-
-//   // try {
-//   //   if (borrowList) {
-//   //     res
-//   //       .status(200)
-//   //       .json({ success: true, message: "Borrowing  List", data: borrowList });
-//   //   } else {
-//   //     res.status(404).json({ success: true, message: "data  not  found" });
-//   //   }
-//   // } catch (error) {}
-// }
-
-// async function List() {
-//   // console.log("SALAM");
-// }
-
 export { create, update, members, member, deleted, Login };
