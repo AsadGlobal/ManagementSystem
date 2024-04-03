@@ -63,4 +63,24 @@ async function returned(req, res) {
   }
 }
 
-export { borrow, returned };
+async function List(req, res) {
+  // return res.status(200).json({ message: "SALAM" });
+  const memberId = req.member.id;
+  const borrowList = await Borrowing.find();
+  // memberId
+  console.log(memberId);
+  // console.log(borrowList);
+
+  try {
+    const list = borrowList.data.filter((ele) => ele.memberId == memberId)
+    if (list) {
+      res
+        .status(200)
+        .json({ success: true, message: "Borrowing  List", data: list });
+    } else {
+      res.status(404).json({ success: true, message: "data  not  found" });
+    }
+  } catch (error) {}
+}
+
+export { borrow, returned, List };

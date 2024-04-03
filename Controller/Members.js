@@ -143,8 +143,8 @@ async function Login(req, res) {
 //   // } catch (error) {}
 // }
 
-function List() {
-  console.log("SALAM");
-}
+// async function List() {
+//   // console.log("SALAM");
+// }
 
-export { create, update, members, member, deleted, Login, List };
+export { create, update, members, member, deleted, Login };

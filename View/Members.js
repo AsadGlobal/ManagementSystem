@@ -6,7 +6,7 @@ import {
   member,
   deleted,
   Login,
-  List,
+  
 } from "../Controller/Members.js";
 import { verifytoken } from "../jwt.js";
 
@@ -27,6 +27,6 @@ membersRoutes.post("/members/Login", Login);
 
 // GET
 // membersRoutes.get("/members/borrowList", verifytoken, List);
-membersRoutes.get("/members/borrowList", verifytoken, List);
+// membersRoutes.get("/members/borrowList", verifytoken, List);
 
 export { membersRoutes };
