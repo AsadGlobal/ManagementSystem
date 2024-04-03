@@ -3,7 +3,6 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import { verifytoken } from "./jwt.js";
 import { membersRoutes } from "./View/Members.js";
 import { booksRoutes } from "./View/Books.js";
 import { BorrowingRoutes } from "./View/Borrowing.js";
