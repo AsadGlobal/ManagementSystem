@@ -17,8 +17,6 @@ const memberSchema = new mongoose.Schema(
       default: Date.now,
     },
     Borrow: [],
-    Retrun: [],
-    Books: [],
   },
   { timestamps: true }
 );
