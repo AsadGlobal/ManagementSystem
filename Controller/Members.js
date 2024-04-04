@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import { Member } from "../Modal/Members.js";
-// import { Borrowing } from "../Modal/Borrowing.js";
+import { Borrowing } from "../Modal/Borrowing.js";
 
 async function create(req, res) {
   const body = req.body;
@@ -125,4 +125,28 @@ async function Login(req, res) {
   }
 }
 
-export { create, update, members, member, deleted, Login };
+
+
+
+async function List(req, res) {
+  try {
+    const memberId = req.member.id;
+    const borrowList = await Borrowing.find();
+    const filterData = borrowList.filter((ele) => ele.memberId == memberId);
+
+    if (filterData.length === 0) {
+      return res
+        .status(404)
+        .json({ message: "No borrowings found for this user" });
+    }
+
+    return res
+      .status(200)
+      .json({ message: "User borrow list", data: filterData });
+  } catch (error) {
+    console.error("Error in List:", error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+}
+
+export { create, update, members, member, deleted, Login ,List};

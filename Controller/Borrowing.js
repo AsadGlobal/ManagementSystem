@@ -45,17 +45,17 @@ async function returned(req, res) {
   const memberId = req.member.id;
   const bookId = req.params.id;
   const existingBorrow = await Borrowing.findOne({ bookId });
-
   try {
     if (!existingBorrow) {
       return res.status(400).json({ message: "This book is not borrowed." });
     }
-    await existingBorrow.deleteOne();
+
     const member = await Member.findById(memberId);
     member.Borrow = member.Borrow.filter(
       (id) => id.toString() !== existingBorrow._id.toString()
     );
     await member.save();
+    await existingBorrow.deleteOne();
     res.json({ message: "Book returned successfully." });
   } catch (error) {
     console.error("Error returning book:", error);
@@ -63,23 +63,4 @@ async function returned(req, res) {
   }
 }
 
-async function List(req, res) {
-  // return res.status(200).json({ message: "SALAM" });
-  // const memberId = req.member.id;
-  // const borrowList = await Borrowing.find();
-  // // memberId
-  // console.log(memberId);
-  // // console.log(borrowList);
-  // try {
-  //   const list = borrowList.data.filter((ele) => ele.memberId == memberId)
-  //   if (list) {
-  //     res
-  //       .status(200)
-  //       .json({ success: true, message: "Borrowing  List", data: list });
-  //   } else {
-  //     res.status(404).json({ success: true, message: "data  not  found" });
-  //   }
-  // } catch (error) {}
-}
-
-export { borrow, returned, List };
+export { borrow, returned };
