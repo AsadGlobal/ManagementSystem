@@ -13,7 +13,6 @@ async function create(req, res) {
     const savedMember = await member.save();
 
     res.status(201).json({
-      success: true,
       message: "Member has been created",
       member: savedMember,
     });
@@ -125,9 +124,6 @@ async function Login(req, res) {
   }
 }
 
-
-
-
 async function List(req, res) {
   try {
     const memberId = req.member.id;
@@ -149,4 +145,4 @@ async function List(req, res) {
   }
 }
 
-export { create, update, members, member, deleted, Login ,List};
+export { create, update, members, member, deleted, Login, List };
