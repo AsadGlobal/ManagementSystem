@@ -30,15 +30,12 @@ async function reservation(req, res) {
       }
       const reservationDate = new Date();
       reservationDate.setDate(reservationDate.getDate() + 3);
-
       const newReservation = new Reservation({
         memberId: member._id,
         bookId: book._id,
         reservationDate: reservationDate,
       });
-
       await newReservation.save();
-
       const formattedDate = reservationDate.toLocaleString("en-US", {
         weekday: "long",
         month: "long",
@@ -47,7 +44,6 @@ async function reservation(req, res) {
         minute: "numeric",
         hour12: true,
       });
-
       return res.status(200).json({
         status: true,
         message: "Thank you for your reservation!",
