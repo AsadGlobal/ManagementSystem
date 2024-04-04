@@ -79,8 +79,9 @@ async function returned(req, res) {
     }
   } catch (error) {
     console.error("Error returning book:", error);
-    return res.status(500).json({ message: "Internal Server Error" });  
+    return res.status(500).json({ message: "Internal Server Error" });
   }
 }
+
 
 export { borrow, returned };
