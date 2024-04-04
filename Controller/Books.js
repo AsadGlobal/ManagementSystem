@@ -19,7 +19,7 @@ async function create(req, res, next) {
   } catch (error) {
     console.error(error);
     res.status(500).json({ success: false, error: "Internal Server Error" });
-    // next(error);
+ 
   }
 }
 
