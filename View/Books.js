@@ -8,10 +8,10 @@ const booksRoutes = express.Router();
 booksRoutes.get("/books", books);
 booksRoutes.get("/books/:id", book);
 // Create
-booksRoutes.post("/books",  verifytoken,create);
+booksRoutes.post("/books", verifytoken, create);
 // PUT Update
 booksRoutes.put("/books/:id", verifytoken, update);
 //  DELETE
-booksRoutes.delete("/books/:id",  verifytoken,deleted);
+booksRoutes.delete("/books/:id", verifytoken, deleted);
 
 export { booksRoutes };

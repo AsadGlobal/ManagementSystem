@@ -1,5 +1,6 @@
 import { Borrowing } from "../Modal/Borrowing.js";
 import { Member } from "../Modal/Members.js";
+import { Reservation } from "../Modal/reservation.js";
 
 async function borrow(req, res) {
   const memberId = req.member.id;
@@ -7,13 +8,23 @@ async function borrow(req, res) {
   try {
     const existingBorrow = await Borrowing.findOne({ bookId });
     if (existingBorrow) {
-      return res
-        .status(400)
-        .json({ message: "This book is already borrowed." });
+      return res.status(400).json({
+        message: "This book is already borrowed.",
+      });
     }
+
+    const existingReservation = await Reservation.findOne({ bookId });
+    if (existingReservation) {
+      return res.status(400).json({
+        message: "This book is already reserved.",
+      });
+    }
+
+    // Proceed with borrowing
     const borrowDate = new Date();
     const returnDate = new Date(borrowDate);
     returnDate.setDate(returnDate.getDate() + 7);
+
     const borrowing = new Borrowing({
       borrowStatus: true,
       borrowDate: borrowDate,
@@ -82,6 +93,5 @@ async function returned(req, res) {
     return res.status(500).json({ message: "Internal Server Error" });
   }
 }
-
 
 export { borrow, returned };
